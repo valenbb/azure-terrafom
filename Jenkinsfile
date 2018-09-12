@@ -11,13 +11,13 @@ node {
 	}
 
 	stage('Terraform Plan') {
-	    withCredentials([azureServicePrincipal('azure_terraform_sp')]) {
+	    withCredentials([azureServicePrincipal('azure-terraform-sp')]) {
 	        sh 'terraform plan -input=false -out=/var/lib/jenkins/terraform_plans/test_rg.tfplan'
 	    }
 	}
 	
 	stage('Terraform Apply') {
-	    withCredentials([azureServicePrincipal('azure_terraform_sp')]) {
+	    withCredentials([azureServicePrincipal('azure-terraform-sp')]) {
 	        sh 'terraform apply -input=false -auto-approve'
 	    }
 	}
